@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Monster Hunter API</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<h1>Monster Hunter</h1>
+	<section class="row">
+
+		<section class="column">
+			<h2>Bestiary</h2>
+			<ul class="monsters">
+				<% monsters.forEach( monster => { %>
+				<li class="monster">
+					<span class="name"><%= monster.name %></span> |
+					<span class="species"><%= monster.species %></span>
+					<% if (monster.weaknesses) { %> |
+						<span class="weaknesses">
+							<%= monster.weaknesses %>
+						</span>
+					<% } %>
+				</li>
+				<% }) %>
+			</ul>
+		</section>
+
+		<section class="column">
+			<h2>Add / Update Monster</h2>
+			<form action="/api" method="POST">
+				<label for="monsterName">Monster Name</label>
+				<input type="text" name="monsterName" id="monsterName" placeholder="rathalos" required>
+
+				<label for="monsterSpecies">Monster Class</label>
+				<select name="monsterSpecies" id="monsterSpecies">
+					<optgroup label="Other">
+						<option value="leviathan">Leviathan</option>
+						<option value="carapaceon">Carapaceon</option>
+					</optgroup>
+					<optgroup label="Beasts">
+						<option value="fanged beast">Fanged Beast</option>
+					</optgroup>
+					<optgroup label="Wyverns">
+						<option value="bird wyvern">Bird Wyvern</option>
+						<option value="brute wyvern">Brute Wyvern</option>
+						<option value="piscine wyvern">Piscine Wyvern</option>
+						<option value="flying wyvern" selected>Flying Wyvern</option>
+						<option value="fanged wyvern">Fanged Wyvern</option>
+					</optgroup>
+				</select>
+
+				<label for="monsterWeaknesses">Weaknesses</label>
+				<select name="monsterWeaknesses" id="monsterWeaknesses" multiple>
+					<option value="ice">Ice</option>
+					<option value="water">Water</option>
+					<option value="fire">Fire</option>
+					<option value="thunder">Thunder</option>
+					<option value="dragon">Dragon</option>
+				</select>
+
+				<button type="submit">Submit</button>
+				<button type="button" id="updateButton">Update</button>
+			</form>
+		</section>
+
+		<section class="column">
+			<h2>Delete a Monster</h2>
+			<label for="deleteInput">Monster Name</label>
+			<input type="text" name="deleteInput" id="deleteInput" placeholder="rathalos" required>
+			<button id="deleteButton">Delete</button>
+		</section>
+	</section>
+	<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
