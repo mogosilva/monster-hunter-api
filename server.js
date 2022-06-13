@@ -36,11 +36,12 @@ app.get('/', (request,response) => {
 // CREATE (Crud)
 app.post('/api', (request, response) => {
 	console.log( 'Post started' )
+	request.body.name = request.body.name.toLowerCase()
 	db.collection( 'monsters' ).insertOne(
 		request.body
 	)
 	.then( result => {
-		console.log( result )
+		// console.log( result )
 		response.redirect( '/' )
 	})
 })

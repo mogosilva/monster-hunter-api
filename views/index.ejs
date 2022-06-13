@@ -5,10 +5,13 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Monster Hunter API</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<h1>Monster Hunter</h1>
+	<h1>Monster Hunter Rise</h1>
 	<section class="row">
 
 		<section class="column">
@@ -16,13 +19,17 @@
 			<ul class="monsters">
 				<% monsters.forEach( monster => { %>
 				<li class="monster">
-					<span class="name"><%= monster.name %></span> |
-					<span class="species"><%= monster.species %></span>
-					<% if (monster.weaknesses) { %> |
-						<span class="weaknesses">
-							<%= monster.weaknesses %>
-						</span>
-					<% } %>
+					<section class="card">
+						<h3 class="name"><%= monster.name %> <span class="species"><%= monster.species %></span></h3>
+						<% if (monster.weaknesses) { %>
+							<h4>Weaknesses</h4>
+							<ul class="weaknesses">
+								<% monster.weaknesses.forEach( element => { %>
+									<li><%= element %></li>
+								<% }) %>
+							</ul>
+						<% } %>
+					</section>
 				</li>
 				<% }) %>
 			</ul>
@@ -32,10 +39,10 @@
 			<h2>Add / Update Monster</h2>
 			<form action="/api" method="POST">
 				<label for="monsterName">Monster Name</label>
-				<input type="text" name="monsterName" id="monsterName" placeholder="rathalos" required>
+				<input type="text" name="name" id="monsterName" placeholder="Rathalos" required>
 
 				<label for="monsterSpecies">Monster Class</label>
-				<select name="monsterSpecies" id="monsterSpecies">
+				<select name="species" id="monsterSpecies">
 					<optgroup label="Other">
 						<option value="leviathan">Leviathan</option>
 						<option value="carapaceon">Carapaceon</option>
@@ -53,7 +60,7 @@
 				</select>
 
 				<label for="monsterWeaknesses">Weaknesses</label>
-				<select name="monsterWeaknesses" id="monsterWeaknesses" multiple>
+				<select name="weaknesses" id="monsterWeaknesses" multiple size="5">
 					<option value="ice">Ice</option>
 					<option value="water">Water</option>
 					<option value="fire">Fire</option>
@@ -69,7 +76,7 @@
 		<section class="column">
 			<h2>Delete a Monster</h2>
 			<label for="deleteInput">Monster Name</label>
-			<input type="text" name="deleteInput" id="deleteInput" placeholder="rathalos" required>
+			<input type="text" name="deleteInput" id="deleteInput" placeholder="Rathalos" required>
 			<button id="deleteButton">Delete</button>
 		</section>
 	</section>

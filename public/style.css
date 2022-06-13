@@ -1,7 +1,21 @@
+html
+{
+	font-family: 'Roboto', sans-serif;
+}
 .monster
 {
 	text-transform: capitalize;
 }
+
+h3
+{
+	margin: 0.6rem 0;
+}
+h4
+{
+	margin: 0.4rem 0;
+}
+
 label,
 input,
 select
@@ -17,9 +31,16 @@ select
 .row
 {
 	display: flex;
+	max-width: 90%;
+	margin: 0 auto;
 }
 .column
 {
 	flex: 33.333%;
 	padding-left: 2%;
+}
+.species
+{
+	font-size: 0.75rem;
+	font-weight: 400;
 }
